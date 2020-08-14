@@ -1,12 +1,13 @@
 import React, {Component, Fragment} from 'react';
 import Spinner from "../layout/Spinner";
 import {Link} from "react-router-dom";
+import Repos from "../repos/Repos";
 
 class User extends Component {
     componentDidMount() {
         const userName = this.props.match.params.login;
-        console.log('username:' + userName);
         this.props.getUser(userName);
+        this.props.getUserRepos(userName);
     };
 
     render() {
@@ -35,7 +36,7 @@ class User extends Component {
                         <h3>Bio</h3>
                         <p>{bio}</p>
                     </Fragment>}
-                    <a href={html_url} target='_blank' className='btn btn-dark m-1'>Visit Github Profile</a>
+                    <a href={html_url} target='_blank' rel="noopener noreferrer" className='btn btn-dark m-1'>Visit Github Profile</a>
                     <ul>
                         <li>{login && <Fragment> <strong>Username: </strong> {login}</Fragment>}</li>
                         <li>{company && <Fragment> <strong>Company: </strong> {company}</Fragment>}</li>
@@ -49,6 +50,7 @@ class User extends Component {
                 <div className="badge badge-light">Public Repos: {public_repos}</div>
                 <div className="badge badge-dark">Public Gists: {public_gists}</div>
             </div>
+            <Repos repos={this.props.repos}/>
         </Fragment>;
     }
 }
