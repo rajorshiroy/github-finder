@@ -11,7 +11,7 @@ class User extends Component {
 
     render() {
         const {
-            name, avatar_url, location, bio, blog, login, html_url, followers,
+            name, company, avatar_url, location, bio, blog, login, html_url, followers,
             following, public_repos, public_gists, hireable
         } = this.props.user;
 
@@ -36,7 +36,18 @@ class User extends Component {
                         <p>{bio}</p>
                     </Fragment>}
                     <a href={html_url} target='_blank' className='btn btn-dark m-1'>Visit Github Profile</a>
+                    <ul>
+                        <li>{login && <Fragment> <strong>Username: </strong> {login}</Fragment>}</li>
+                        <li>{company && <Fragment> <strong>Company: </strong> {company}</Fragment>}</li>
+                        <li>{blog && <Fragment> <strong>Website: </strong> {blog}</Fragment>}</li>
+                    </ul>
                 </div>
+            </div>
+            <div className="card text-center">
+                <div className="badge badge-primary">Followers: {followers}</div>
+                <div className="badge badge-success">Following: {following}</div>
+                <div className="badge badge-light">Public Repos: {public_repos}</div>
+                <div className="badge badge-dark">Public Gists: {public_gists}</div>
             </div>
         </Fragment>;
     }
